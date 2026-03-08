@@ -90,3 +90,14 @@
 - Results: Syntax check passed; router scenario tests passed.
 - Known issues: Heuristics are intentionally conservative and may need tuning with eval data in later milestones.
 - Next step: Milestone 4+ workspace modules and optional cognition adapter integration around existing `Engine`.
+
+#### 2026-03-08 19:31
+- Milestone: Milestone 4 (creative + verifier workspaces)
+- Repo files inspected: `documentation.md`, `plans.md`, `implement.md`, `AGENTS.md`, `docs/architecture.md`, `docs/evals.md`, `nanochat/cognition/schemas.py`, `nanochat/cognition/router.py`, `tests/test_cognition_schemas.py`
+- Files changed: `nanochat/cognition/creative.py`, `nanochat/cognition/verifier.py`, `nanochat/cognition/schemas.py`, `nanochat/cognition/__init__.py`, `tests/test_cognition_creative_verifier.py`
+- Summary: Added an isolated creative workspace that generates multiple inspectable candidates, plus a verifier workspace that critiques/ranks candidates and can optionally repair chosen outputs against constraints. Extended trace schema with candidate/verifier fields and added focused tests for generation, narrowing, and repair behavior.
+- Decisions made: Kept logic deterministic/heuristic for cheap CPU tests; reused `Hypothesis`/`VerificationResult`; avoided modifying training, speedrun, or core pretraining flows.
+- Commands run: `python -m compileall nanochat/cognition/creative.py nanochat/cognition/verifier.py nanochat/cognition/schemas.py tests/test_cognition_creative_verifier.py`; `python -m pytest -q tests/test_cognition_creative_verifier.py tests/test_cognition_schemas.py tests/test_cognition_memory.py tests/test_cognition_router.py`
+- Results: Compile checks passed; targeted cognition tests passed (`16 passed`).
+- Known issues: Verifier scoring/repair heuristics are intentionally simple (keyword+constraint checks) and should be tuned later with Milestone 8 eval data.
+- Next step: Milestone 5 lightweight sandbox module and tests for branch-and-score outcomes written back to episodic memory.

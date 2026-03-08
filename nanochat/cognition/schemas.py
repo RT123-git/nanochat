@@ -39,6 +39,11 @@ class Trace:
     decision: str
     rationale: str
     steps: list[str] = field(default_factory=list)
+    generated_candidates: list[str] = field(default_factory=list)
+    verifier_critiques: list[str] = field(default_factory=list)
+    ranking: list[str] = field(default_factory=list)
+    selected_candidate: str | None = None
+    repairs: list[str] = field(default_factory=list)
     created_at: str = field(default_factory=utc_now_iso)
     metadata: dict[str, Any] = field(default_factory=dict)
 

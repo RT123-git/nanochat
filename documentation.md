@@ -1,8 +1,8 @@
 # documentation.md
 
 ## Current status
-- Active milestone: Milestones 0-3 completed (scaffold, contracts, memory, explicit router)
-- Overall state: cognition subsystem scaffolded and validated in isolation; deeper integration intentionally pending Milestones 4+
+- Active milestone: Milestone 7 completed (end-to-end cognition loop demo and integration test)
+- Overall state: cognition subsystem now has an adapter-driven runnable loop connecting routing, memory, creative/verifier workspaces, sandbox, consolidation, and inspectable tracing.
 
 ## Repo constraints already identified
 - Repository already exists and is functioning.
@@ -101,3 +101,14 @@
 - Results: Syntax check passed; cognition regression suite passed (15 tests).
 - Known issues: Consolidation heuristics are intentionally simple (metadata and substring matching) and may need refinement with real eval traces.
 - Next step: Implement Milestone 7 end-to-end cognition loop wiring these modules through an adapter-driven demo path.
+
+#### 2026-03-08 23:05
+- Milestone: Milestone 7 (End-to-end cognition loop)
+- Repo files inspected: `README.md`, `pyproject.toml`, `AGENTS.md`, `plans.md`, `implement.md`, `documentation.md`, `docs/architecture.md`, `docs/evals.md`, `nanochat/cognition/__init__.py`, `nanochat/cognition/backend.py`, `nanochat/cognition/memory.py`, `nanochat/cognition/router.py`, `nanochat/cognition/consolidation.py`, `nanochat/cognition/skills.py`
+- Files changed: `nanochat/cognition/creative.py`, `nanochat/cognition/verifier.py`, `nanochat/cognition/sandbox.py`, `nanochat/cognition/traces.py`, `nanochat/cognition/agent.py`, `nanochat/cognition/__init__.py`, `scripts/cognition_demo.py`, `tests/test_cognition_agent.py`, `documentation.md`
+- Summary: Added a full optional cognition loop controller (`CognitionAgent`) that wires backend calls, router decisions, memory retrieval, creative candidate generation, verifier ranking, sandbox branch scoring, consolidation, and trace recording; also added a runnable script demo and end-to-end tests.
+- Decisions made: Kept implementation isolated under `nanochat/cognition/` and `scripts/cognition_demo.py`; used lightweight in-memory stores plus fake backend-driven behavior to stay CPU-cheap and deterministic for tests.
+- Commands run: `python -m compileall nanochat/cognition scripts/cognition_demo.py tests/test_cognition_agent.py`; `python -m pytest -q tests/test_cognition_agent.py tests/test_cognition_consolidation.py tests/test_cognition_memory.py tests/test_cognition_router.py tests/test_cognition_schemas.py tests/test_cognition_smoke.py`; `python -m scripts.cognition_demo "Brainstorm three ideas for retrieval routing"`
+- Results: Syntax check passed; cognition test suite passed; demo script runs and prints decision/response/trace.
+- Known issues: Heuristics are intentionally simple and primarily inspectability-focused; backend integration with the full production `Engine` remains optional and can be added in a later milestone.
+- Next step: Milestone 8 evaluation harness for baseline vs cognition-enhanced comparisons.

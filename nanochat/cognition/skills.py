@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import re
 
 from .schemas import SkillArtifact
 
@@ -52,4 +53,4 @@ def _score_skill(skill: SkillArtifact, terms: list[str]) -> float:
 
 
 def _terms(text: str) -> list[str]:
-    return [token for token in text.lower().split() if token]
+    return re.findall(r"[a-z0-9]+", text.lower())

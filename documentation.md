@@ -101,3 +101,14 @@
 - Results: Compile checks passed; targeted cognition tests passed (`16 passed`).
 - Known issues: Verifier scoring/repair heuristics are intentionally simple (keyword+constraint checks) and should be tuned later with Milestone 8 eval data.
 - Next step: Milestone 5 lightweight sandbox module and tests for branch-and-score outcomes written back to episodic memory.
+
+#### 2026-03-08 19:33
+- Milestone: Milestone 5 (lightweight sandbox)
+- Repo files inspected: `README.md`, `pyproject.toml`, `AGENTS.md`, `plans.md`, `implement.md`, `documentation.md`, `docs/architecture.md`, `docs/evals.md`, `nanochat/cognition/schemas.py`, `nanochat/cognition/memory.py`, `nanochat/cognition/creative.py`, `nanochat/cognition/verifier.py`, `nanochat/cognition/__init__.py`
+- Files changed: `nanochat/cognition/sandbox.py`, `nanochat/cognition/__init__.py`, `tests/test_cognition_sandbox.py`, `documentation.md`
+- Summary: Added a deterministic lightweight sandbox that explores multiple branches, scores outcomes, and optionally records ranked branch results into episodic memory as sandbox-tagged episodes.
+- Decisions made: Kept branch simulation heuristic and offline-only to satisfy CPU-friendly/no-infra goals; integrated by export only (no invasive wiring to existing chat/training flows).
+- Commands run: `python -m compileall nanochat/cognition/sandbox.py nanochat/cognition/__init__.py tests/test_cognition_sandbox.py`; `python -m pytest -q tests/test_cognition_sandbox.py tests/test_cognition_creative_verifier.py tests/test_cognition_memory.py tests/test_cognition_router.py tests/test_cognition_schemas.py tests/test_cognition_smoke.py`
+- Results: Compile checks passed; cognition-targeted suite passed (`19 passed`).
+- Known issues: Sandbox scoring remains intentionally heuristic and should be tuned against Milestone 8 evaluation data.
+- Next step: Implement Milestone 6 consolidation + skill reuse with provenance-aware storage and regression tests.

@@ -7,6 +7,7 @@ from .backend import BackendAdapter, GenerationBackend
 from .creative import CreativeWorkspace
 from .memory import EpisodicMemory, SemanticMemory
 from .router import ExplicitRouter
+from .sandbox import LightweightSandbox, SandboxOutcome
 from .schemas import (
     Episode,
     Hypothesis,
@@ -25,6 +26,8 @@ __all__ = [
     "EpisodicMemory",
     "SemanticMemory",
     "ExplicitRouter",
+    "LightweightSandbox",
+    "SandboxOutcome",
     "Episode",
     "Hypothesis",
     "MemoryItem",

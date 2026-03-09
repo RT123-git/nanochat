@@ -85,3 +85,29 @@ A promising result shows some combination of:
 - improved repeated-task performance
 - evidence of reuse through skill artifacts
 - clearer explanation of why the system made a choice
+
+## Milestone 8 implementation (lightweight harness)
+
+A repo-native evaluation entrypoint now exists at `scripts/cognition_eval.py`.
+
+### What it compares
+- **Baseline**: direct backend generation through `BackendAdapter.run(...)`
+- **Cognition-enhanced**: `CognitionAgent.run(...)` over the same prompts
+
+### Built-in cases
+The default harness includes memory, creative, verification, and sandbox-style prompts from `nanochat.cognition.eval.DEFAULT_CASES`.
+
+### Scoring and artifacts
+- Per-case keyword recall score in `[0, 1]`
+- Aggregate `baseline_mean`, `cognition_mean`, and `delta`
+- Route histogram (`route_counts`) for inspectability
+- JSON artifact containing per-case rows and aggregate summary
+
+### Run command
+```bash
+python -m scripts.cognition_eval --output artifacts/cognition_eval.json
+```
+
+### Current limitations
+- Uses a deterministic demo backend for cheap and reproducible CPU-only runs.
+- Keyword scoring is intentionally simple and should be replaced with richer task metrics in future milestones.

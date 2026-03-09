@@ -1,8 +1,8 @@
 # documentation.md
 
 ## Current status
-- Active milestone: Milestone 7 completed (end-to-end cognition loop demo and integration test)
-- Overall state: cognition subsystem now has an adapter-driven runnable loop connecting routing, memory, creative/verifier workspaces, sandbox, consolidation, and inspectable tracing.
+- Active milestone: Milestone 8 completed (evaluation harness)
+- Overall state: cognition subsystem now includes a lightweight baseline-vs-cognition evaluation harness with JSON artifacts, while preserving the optional adapter-driven cognition loop.
 
 ## Repo constraints already identified
 - Repository already exists and is functioning.
@@ -112,3 +112,15 @@
 - Results: Syntax check passed; cognition test suite passed; demo script runs and prints decision/response/trace.
 - Known issues: Heuristics are intentionally simple and primarily inspectability-focused; backend integration with the full production `Engine` remains optional and can be added in a later milestone.
 - Next step: Milestone 8 evaluation harness for baseline vs cognition-enhanced comparisons.
+
+
+#### 2026-03-08 23:40
+- Milestone: Milestone 8 (Evaluation harness)
+- Repo files inspected: `README.md`, `pyproject.toml`, `AGENTS.md`, `plans.md`, `implement.md`, `documentation.md`, `docs/evals.md`, `scripts/chat_eval.py`, `tasks/common.py`, `nanochat/cognition/agent.py`, `scripts/cognition_demo.py`
+- Files changed: `nanochat/cognition/eval.py`, `scripts/cognition_eval.py`, `tests/test_cognition_eval.py`, `docs/evals.md`, `documentation.md`
+- Summary: Added a lightweight evaluation harness that compares direct baseline responses with cognition-enhanced responses on deterministic prompt cases, computes aggregate scores, and writes machine-readable JSON artifacts.
+- Decisions made: Kept evaluation isolated and CPU-cheap with a fake deterministic backend; used simple keyword recall scoring for inspectable milestone-appropriate metrics.
+- Commands run: `python -m compileall nanochat/cognition/eval.py scripts/cognition_eval.py tests/test_cognition_eval.py`; `python -m pytest -q tests/test_cognition_eval.py tests/test_cognition_agent.py tests/test_cognition_consolidation.py tests/test_cognition_memory.py tests/test_cognition_router.py tests/test_cognition_schemas.py tests/test_cognition_smoke.py`; `python -m scripts.cognition_eval --output artifacts/cognition_eval.json`
+- Results: Syntax check passed; cognition regression tests passed; eval script produced comparison summary and JSON artifact.
+- Known issues: Evaluation uses synthetic prompt cases and simple keyword metrics, so results are directional rather than benchmark-grade.
+- Next step: Milestone 9 polish, docs cleanup, and optional deeper integration hooks.

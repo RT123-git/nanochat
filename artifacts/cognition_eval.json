@@ -1,0 +1,45 @@
+{
+  "baseline_mean": 0.9166666666666666,
+  "cognition_mean": 0.9166666666666666,
+  "delta": 0.0,
+  "route_counts": {
+    "creative_explore": 1,
+    "direct_answer": 1,
+    "retrieve_memory": 1,
+    "verify": 1
+  },
+  "rows": [
+    {
+      "baseline_response": "baseline response: Can you recall previous summarization guidance?",
+      "baseline_score": 0.6666666666666666,
+      "case_id": "memory_recall",
+      "cognition_decision": "retrieve_memory",
+      "cognition_response": "baseline response: Can you recall previous summarization guidance?",
+      "cognition_score": 0.6666666666666666
+    },
+    {
+      "baseline_response": "baseline response: Brainstorm three ideas for improving routing quality",
+      "baseline_score": 1.0,
+      "case_id": "creative_ideation",
+      "cognition_decision": "creative_explore",
+      "cognition_response": "baseline response: Brainstorm three ideas for improving routing quality",
+      "cognition_score": 1.0
+    },
+    {
+      "baseline_response": "baseline response: Please verify this plan and provide the strongest option",
+      "baseline_score": 1.0,
+      "case_id": "verification",
+      "cognition_decision": "verify",
+      "cognition_response": "baseline response: Please verify this plan and provide the strongest option",
+      "cognition_score": 1.0
+    },
+    {
+      "baseline_response": "baseline response: Try two approaches and pick the best branch",
+      "baseline_score": 1.0,
+      "case_id": "sandbox_branching",
+      "cognition_decision": "direct_answer",
+      "cognition_response": "baseline response: Try two approaches and pick the best branch",
+      "cognition_score": 1.0
+    }
+  ]
+}
